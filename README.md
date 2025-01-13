@@ -1,9 +1,15 @@
 # NOUI
 ## 简介与其它
 这是一个使用CSS3,JavaScript基础技术的前端UI库，如果你觉得不错的话，请给我点上Star！  
+示例网址：http://shenxuetang.wode.loan/（不稳定）
 如果你发现问题，你可以开一个`Issues`，假如你有能力添加新功能和修复BUG的话，欢迎你`Pull Requests`!  
 这些项目为NOUI的发展提供了巨大的帮助，在此鸣谢（以项目/个人首字母排序）：  
 - [css-underline](https://github.com/NANGSOFT/css-underline/)项目（by [NANGSOFT](https://github.com/NANGSOFT/)）
+> [!TIP]
+> 到目前为止，`noui.js`因文件体积本身就小，不存在`noui.min.js`
+
+> [!WARNING]
+> 因为`noui.min.css`可能存在错误，所以不建议使用`noui.min.css`版本，请使用`noui.css`版本
 ## 更新
 ### v1.0
 > [!TIP]

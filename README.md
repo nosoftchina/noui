@@ -1,8 +1,9 @@
 # NOUI
-## 简介与其它
+## 简介
 这是一个使用CSS3,JavaScript基础技术的前端UI库，如果你觉得不错的话，请给我点上Star！  
 示例网址：http://shenxuetang.wode.loan/ （不稳定）  
-如果你发现问题，你可以开一个`Issues`，假如你有能力添加新功能和修复BUG的话，欢迎你`Pull Requests`!  
+如果你发现问题，你可以开一个`Issues`，假如你有能力添加新功能和修复BUG的话，欢迎你`Pull Requests`!
+## 其它
 这些项目为NOUI的发展提供了巨大的帮助，在此鸣谢（以项目/个人首字母排序）：  
 - [css-underline](https://github.com/NANGSOFT/css-underline/)项目（by [NANGSOFT](https://github.com/NANGSOFT/)）
 > [!TIP]
@@ -10,6 +11,23 @@
 
 > [!WARNING]
 > 因为`noui.min.css`可能存在错误，所以不建议使用`noui.min.css`版本，请使用`noui.css`版本
+## 使用
+以下为简单使用方法，详细请参照WIKI
+### 方法1：
+在需要的文件引用CDN（不建议在项目环境中使用），以下提供示例（含2个CDN）：
+```html
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/nosoftcn/noui/css/noui.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/nosoftcn/noui/js/noui.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdmirror.com/gh/nosoftcn/noui/css/noui.css">
+<script type="text/javascript" src="https://cdn.jsdmirror.com/gh/nosoftcn/noui/js/noui.js"></script>
+```
+### 方法2：
+下载文件到服务器上，然后在需要的文件引用：
+```html
+<link rel="stylesheet" type="text/css" href="[你的noui位置]/css/noui.css">
+<script type="text/javascript" src="[你的noui位置]/js/noui.js"></script>
+```
 ## 更新
 ### v1.0
 > [!TIP]

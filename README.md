@@ -4,13 +4,9 @@
 示例网址：http://shenxuetang.wode.loan/ （不稳定）  
 如果你发现问题，你可以开一个`Issues`，假如你有能力添加新功能和修复BUG的话，欢迎你`Pull Requests`!
 ## 其它
+更多内容请到WIKI查看
 这些项目为NOUI的发展提供了巨大的帮助，在此鸣谢（以项目/个人首字母排序）：  
 - [css-underline](https://github.com/NANGSOFT/css-underline/)项目（by [NANGSOFT](https://github.com/NANGSOFT/)）
-> [!TIP]
-> 到目前为止，`noui.js`因文件体积本身就小，不存在`noui.min.js`
-
-> [!WARNING]
-> 因为`noui.min.css`可能存在错误，所以不建议使用`noui.min.css`版本，请使用`noui.css`版本
 ## 安装
 以下为简单安装方法，详细请参照WIKI
 ### 方法1：

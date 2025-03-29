@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/nosoftcn/noui/css/noui.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/nosoftcn/noui/js/noui.js"></script>
 ```
-```
+```html
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdmirror.com/gh/nosoftcn/noui/css/noui.css">
 <script type="text/javascript" src="https://cdn.jsdmirror.com/gh/nosoftcn/noui/js/noui.js"></script>
 ```

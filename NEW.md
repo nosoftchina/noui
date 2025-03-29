@@ -30,18 +30,33 @@
 ------------
 #### v1.1
 > [!NOTE]
-> `v1.1`为当前公开的最新版本
+> 建议升级至最新v1.2
 
 - 顶栏
   - [NEW]普通悬浮顶栏
   - [NEW]固定悬浮顶栏
   - [IMPROVE]顶栏-普通顶栏与内容间距
   - [IMPROVE]顶栏-固定顶栏与内容间距
-- [FIX]深色模式不生效问题(BUG)【右键菜单未适配】
+- [FIX]深色模式/黑暗模式不生效问题(BUG)【右键菜单未适配】
 - [IMPROVE]按钮外间距
 - [NEW]卡片
 - [NEW]链接下划线【此版本新增|修改至[css-underline](https://github.com/NANGSOFT/css-underline/)项目】
 - [NEW]右键菜单
+------------
+#### v1.2
+> [!NOTE]
+> `v1.2`为当前公开的最新版本  
+> 此版本注重优化
+
+- 顶栏
+  - [IMPROVE]普通悬浮顶栏宽度
+  - [IMPROVE]固定悬浮顶栏宽度
+- [FIX]深色模式/黑暗模式未适配右键菜单
+- [NEW]全局圆角统一修改
+- [IMPROVE]!important的滥用
+- [IMPROVE]性能优化
+- [IMPROVE]noui.min.css压缩算法
+- [NEW]noui.min.js
 ### 更新计划
 - [ ] 更多按钮形状
 - [ ] 更多主题

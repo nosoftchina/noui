@@ -1,4 +1,4 @@
-console.log(`NoUI v1.1
+console.log(`NoUI v1.2
 ©2024 - 2025 NoSoft.All Rights Reserved.|版权归属于NoSoft。
 
 Ｎ　　　Ｎ　　　　　　　　　Ｕ　　　Ｕ　　ＩＩＩＩＩ
@@ -48,3 +48,8 @@ function NoUIMenu() {
 		contextMenu.style.visibility = 'hidden'; // 点击任意位置隐藏菜单
 	});
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const radius = document.body.getAttribute('data-radius') || '0';
+    document.documentElement.style.setProperty('--radius', `${radius}px`);
+	
+});

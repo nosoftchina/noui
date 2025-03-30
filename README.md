@@ -12,5 +12,7 @@
 Github的`WIKI`是一个很好用的功能，在NOUI仓库的`WIKI`中涵盖了多种介绍，是你的好助手 [>GO TO THE WIKI](https://github.com/nosoftchina/noui/wiki)
 ### 安装
 请参照[WIKI-安装](https://github.com/nosoftchina/noui/wiki/安装)
+### 使用
+请参照[WIKI-使用](https://github.com/nosoftchina/noui/wiki/使用)
 ### 更新
 请查看[NEW.md](https://github.com/nosoftchina/noui/blob/main/NEW.md)或[WIKI-更新](https://github.com/nosoftchina/noui/wiki/更新)

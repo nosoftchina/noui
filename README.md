@@ -1,6 +1,6 @@
 # NOUI-New Good UI
-![Banner](https://socialify.git.ci/nosoftchina/noui/image?custom_description=%E7%94%B1CSS3%2BJavaScript%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%89%8D%E7%AB%AFUI%E5%BA%93&description=1&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Transparent&pulls=1&stargazers=1&t=&theme=Auto)
-[![星标](https://img.shields.io/github/stars/nosoftchina/noui?style=for-the-badge&color=orange&label=星标)](https://github.com/nosoftchina)
+[![Banner](http://socialify.git.ci/nosoftchina/noui/image?font=Source+Code+Pro&language=1&name=1&owner=1&pattern=Solid&theme=Auto)](https://github.com/nosoftchina/noui)
+[![星标](https://img.shields.io/github/stars/nosoftchina/noui?style=for-the-badge&color=orange&label=星标)](https://github.com/nosoftchina/noui)
 [![当前版本](https://img.shields.io/github/v/release/nosoftchina/noui?style=for-the-badge&color=purple&label=当前版本)](https://github.com/nosoftchina/noui/releases/latest)
 [![许可证](https://img.shields.io/badge/license-MIT-blue.svg?label=许可证&style=for-the-badge)](https://github.com/nosoftchina/noui?tab=MIT-1-ov-file)
 

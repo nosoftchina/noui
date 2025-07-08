@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoUI Example</title>
+    <link rel="stylesheet" href="css/noui.min.css">
+    <script src="js/noui.js"></script>
+</head>
+
+<body class="noui-theme-blue" data-radius="5">
+    <div class="noui-topbar noui-topbar-fixed noui-topbar-levitation">
+        <!--class: noui-topbar+{none/fixed}+{none/levitation}-->
+        <span class="noui-topbar-title">NoUI Example</span>
+    </div>
+    <div>
+        <p id="test">Test</p>
+        <button class="noui-button">Button</button>
+        <div class="noui-card">
+            <span id="test">A Card</span>
+        </div>
+        <a href="#" class="noui-hover">A Link</a>
+    </div>
+    <script>
+        NoUIMenu({
+            items: [
+                { text: '菜单项1', action: () => alert('点击了菜单项1') },
+                { text: '菜单项2', action: () => alert('点击了菜单项2') },
+                { text: '菜单项3' },
+                { text: '菜单项4', action: () => alert('点击了菜单项4') }
+            ]
+        })();
+        /*
+        Or
+        const menu = NoUIMenu({
+            items: [
+                { text: '菜单项1', action: () => alert('点击了菜单项1') },
+                { text: '菜单项2', action: () => alert('点击了菜单项2') },
+                { text: '菜单项3' },
+                { text: '菜单项4', action: () => alert('点击了菜单项4') }
+            ]
+        });
+        menu(document.getElementById('test'));
+        */
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 /*
 主题色|ThemeColor
-class(body): {noui-theme-blue/noui-theme-lightblue}
+class(body): {noui-theme-blue/noui-theme-lightblue/noui-theme-purple/noui-theme-teal/noui-theme-green}
 */
 
 .noui-theme-blue {
@@ -13,14 +13,44 @@ class(body): {noui-theme-blue/noui-theme-lightblue}
 	--accent-color: #FFFFFF;
 }
 
-/*
-背景色|BackgroundColor
-class(any): noui-background-color
-*/
+.noui-theme-purple {
+	--theme-color: #6344b9;
+	--accent-color: #FFFFFF;
+}
 
-.noui-background-color {
-	background-color: var(--theme-color);
-	color: var(--accent-color);
+.noui-theme-lightpurple {
+	--theme-color: #987be6;
+	--accent-color: #FFFFFF;
+}
+
+.noui-theme-green {
+	--theme-color: #53c010;
+	--accent-color: #FFFFFF;
+}
+
+.noui-theme-lightgreen {
+	--theme-color: #00bfa5;
+	--accent-color: #FFFFFF;
+}
+
+.noui-theme-orange {
+	--theme-color: #E65100;
+	--accent-color: #FFFFFF;
+}
+
+.noui-theme-lightorange {
+	--theme-color: #FF9100;
+	--accent-color: #FFFFFF;
+}
+
+.noui-theme-yellow {
+	--theme-color: #ffc400;
+	--accent-color: #ffffff;
+}
+
+.noui-theme-lightyellow {
+	--theme-color: #b3ff00;
+	--accent-color: #FFFFFF;
 }
 
 /*
@@ -50,6 +80,10 @@ body:not(:has(> .noui-topbar)) {
 
 :root {
 	--radius: 5px;
+}
+
+p, .noui-card, .noui-dialog, a{
+	word-wrap: break-word;
 }
 
 /*
@@ -122,6 +156,12 @@ class(any): noui-button
 	cursor: pointer;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.noui-button:hover {
+    opacity: 0.9;
 }
 
 /*
@@ -131,8 +171,6 @@ class(div): noui-card
 
 .noui-card {
 	border-radius: var(--radius);
-	background: #FFFFFF;
-	box-shadow: -12px 12px 24px #d6d6d6, 12px -12px 24px #FFFFFF;
 	padding: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -218,12 +256,8 @@ id(div): noui-menu
 */
 #noui-menu {
 	width: 170px;
-	border-radius: var(--radius);
-	background: #FFFFFF;
-	box-shadow: -12px 12px 24px #d6d6d6, 12px -12px 24px #FFFFFF;
-	padding: 8px;
 	position: fixed;
-	z-index: 1000;
+	z-index: 1001;
 	user-select: none;
 }
 
@@ -240,7 +274,93 @@ id(div): noui-menu
 
 #noui-menu li:hover {
 	border-radius: var(--radius);
-	background-color: #f0f0f0;
+	background-color: rgba(215, 215, 215, 0.45);
+}
+
+/*
+对话框|Dialog
+Use by JS
+*/
+.noui-dialog-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.noui-dialog {
+	min-width: 320px;
+	max-width: 450px;
+	transform: translateY(50px);
+	opacity: 0;
+	transition: all 0.3s ease;
+	overflow: hidden;
+}
+
+.noui-dialog.show {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.noui-dialog-title {
+	margin: 0;
+	padding: 5px 20px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.noui-dialog-content {
+	padding: 5px 20px;
+	line-height: 1.5;
+}
+
+.noui-dialog-options {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 20px;
+}
+
+/*
+重要样式|ImportantStyles
+class(any): noui-background-color/noui-background-glassmorphism/noui-ripple
+*/
+
+.noui-background-glassmorphism, .noui-card {
+	background-color: rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(10px);
+	box-shadow: 0 3px 5px rgba(0, 0, 0, .15);
+	color: rgba(0, 0, 0, 0.95);
+}
+
+.noui-background-color {
+	background-color: var(--theme-color);
+	color: var(--accent-color);
+}
+
+.noui-background-color.noui-card {
+	box-shadow: none;
+}
+
+.noui-ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 /*
@@ -256,24 +376,25 @@ id(div): noui-menu
 	.noui-topbar,
 	.noui-topbar-fixed,
 	.noui-topbar-levitation,
-	.noui-topbar-levitation-fixed,
-	.noui-card,
-	.noui-menu,
-	#noui-menu {
+	.noui-topbar-levitation-fixed {
 		background-color: #212121;
 	}
 
-	.noui-card {
-		color: #FFFFFF;
+	.noui-background-glassmorphism, .noui-card {
+		backdrop-filter: blur(20px);
+		background-color: rgba(0, 0, 0, 0.35);
+		color: rgba(255, 255, 255, 0.95);
+	}
+
+	.noui-background-color.noui-card {
+		background-color: var(--theme-color);
 		box-shadow: none;
 	}
 
-	#noui-menu {
-		color: #FFFFFF;
-		box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
-	}
-
 	#noui-menu li:hover {
-		background-color: #2d2d2d;
+		background-color: rgba(40, 40, 40, 0.45);
+	}
+	.noui-ripple-effect {
+		background-color: rgba(255, 255, 255, 0.3);
 	}
 }

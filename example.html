@@ -5,30 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoUI Example</title>
-    <link rel="stylesheet" href="css/noui.min.css">
+    <link rel="stylesheet" href="css/noui.css">
     <script src="js/noui.js"></script>
 </head>
 
-<body class="noui-theme-blue" data-radius="5">
-    <div class="noui-topbar noui-topbar-fixed noui-topbar-levitation">
+<body class="noui-theme-lightblue" data-radius="5" style="background-image: url('https://www4.bing.com//th?id=OHR.TokyoSunrise_ZH-CN0091906710_UHD.jpg')">
+    <div class="noui-topbar noui-topbar-fixed noui-topbar-levitation noui-background-glassmorphism">
         <!--class: noui-topbar+{none/fixed}+{none/levitation}-->
         <span class="noui-topbar-title">NoUI Example</span>
     </div>
     <div>
-        <p id="test">Test</p>
+        <p id="test">Text</p>
         <button class="noui-button">Button</button>
         <div class="noui-card">
-            <span id="test">A Card</span>
+            This is a card.
+            Welcome to use NoUI.
+        </div>
+        <div class="noui-card noui-background-color">
+            <span id="test">Card with background color</span>
+        </div>
+        <div class="noui-card noui-ripple" style="height: 300px;">
+            <span id="test">Card with ripple</span>
         </div>
         <a href="#" class="noui-hover">A Link</a>
     </div>
     <script>
         NoUIMenu({
             items: [
-                { text: '菜单项1', action: () => alert('点击了菜单项1') },
-                { text: '菜单项2', action: () => alert('点击了菜单项2') },
-                { text: '菜单项3' },
-                { text: '菜单项4', action: () => alert('点击了菜单项4') }
+                { text: '返回', action: () => window.history.back() },
+                { text: '刷新', action: () => location.reload() },
+                { text: '打印', action: () => window.print() },
+                { text: '复制', action: () => navigator.clipboard.writeText(window.getSelection().toString()) }
             ]
         })();
         /*
@@ -43,6 +50,10 @@
         });
         menu(document.getElementById('test'));
         */
+        NoUIDialog({
+            title: '提示',
+            content: '这是一个对话框',
+        });
     </script>
 </body>
 

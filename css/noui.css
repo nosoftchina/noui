@@ -78,6 +78,11 @@ body:not(:has(> .noui-topbar)) {
 	margin: 0;
 }
 
+.noui-topbar-levitation + div {
+	padding: 70px 15px 0 15px;
+	margin: 0;
+}
+
 :root {
 	--radius: 5px;
 }

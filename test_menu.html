@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoUI Menu Test</title>
+    <link rel="stylesheet" href="css/noui.css">
+    <script src="js/noui.js"></script>
+    <style>
+        body { margin: 0; padding: 20px; }
+        .test-area {
+            height: 200vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .corner-box {
+            position: fixed;
+            width: 150px;
+            height: 100px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .top-right { top: 10px; right: 10px; }
+        .bottom-right { bottom: 10px; right: 10px; }
+        .bottom-left { bottom: 10px; left: 10px; }
+    </style>
+</head>
+<body>
+    <div class="test-area">
+        <h1>菜单边界测试</h1>
+        <p>请在以下位置右键点击测试菜单是否超出边界：</p>
+        <ul>
+            <li>页面右下角区域</li>
+            <li>页面右上角区域</li>
+            <li>页面左下角区域</li>
+            <li>滚动到底部后再测试</li>
+        </ul>
+        
+        <div class="corner-box top-right">右上角<br>(右键点击)</div>
+        <div class="corner-box bottom-right">右下角<br>(右键点击)</div>
+        <div class="corner-box bottom-left">左下角<br>(右键点击)</div>
+    </div>
+    
+    <script>
+        NoUIMenu({
+            items: [
+                { text: '测试菜单项 1', action: () => console.log('点击了 1') },
+                { text: '测试菜单项 2', action: () => console.log('点击了 2') },
+                { text: '测试菜单项 3', action: () => console.log('点击了 3') },
+                { text: '测试菜单项 4', action: () => console.log('点击了 4') }
+            ]
+        })();
+    </script>
+</body>
+</html>

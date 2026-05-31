@@ -56,20 +56,31 @@ function NoUIMenu(config) {
 
   // 显示菜单函数
   function showMenu(x, y) {
-    // 防止溢出
+    // 先显示菜单以获取真实尺寸
+    menu.style.display = "block";
+    
+    // 防止溢出：考虑窗口边界和滚动位置
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     const menuWidth = menu.offsetWidth;
     const menuHeight = menu.offsetHeight;
-
-    const adjustedX =
-      x + menuWidth > windowWidth ? windowWidth - menuWidth - 5 : x;
-    const adjustedY =
-      y + menuHeight > windowHeight ? windowHeight - menuHeight - 5 : y;
+    
+    // 计算可用空间，确保菜单不会超出视口
+    let adjustedX = x;
+    let adjustedY = y;
+    
+    // 水平方向调整
+    if (x + menuWidth > windowWidth - 10) {
+      adjustedX = Math.max(10, windowWidth - menuWidth - 10);
+    }
+    
+    // 垂直方向调整
+    if (y + menuHeight > windowHeight - 10) {
+      adjustedY = Math.max(10, windowHeight - menuHeight - 10);
+    }
 
     menu.style.left = `${adjustedX}px`;
     menu.style.top = `${adjustedY}px`;
-    menu.style.display = "block";
   }
 
   // 全局点击隐藏菜单

@@ -10,24 +10,24 @@
 </head>
 
 <body class="noui-theme-lightblue" data-radius="5" style="background-image: url('https://www4.bing.com//th?id=OHR.TokyoSunrise_ZH-CN0091906710_UHD.jpg')">
+    <!-- 悬浮固定顶栏示例：同时使用 fixed 和 levitation 实现悬浮效果的固定顶栏 -->
     <div class="noui-topbar noui-topbar-fixed noui-topbar-levitation noui-background-glassmorphism">
-        <!--class: noui-topbar+{none/fixed}+{none/levitation}-->
-        <span class="noui-topbar-title">NoUI Example</span>
+        <span class="noui-topbar-title">NoUI Example - 悬浮固定顶栏</span>
     </div>
     <div>
-        <p id="test">Text</p>
-        <button class="noui-button">Button</button>
+        <p>NoUI 框架示例页面</p>
+        <button class="noui-button">按钮示例</button>
         <div class="noui-card">
-            This is a card.
-            Welcome to use NoUI.
+            <strong>卡片组件</strong><br>
+            这是一个基础卡片，欢迎使用 NoUI 框架。
         </div>
         <div class="noui-card noui-background-color">
-            <span id="test">Card with background color</span>
+            <span>带背景色的卡片</span>
         </div>
         <div class="noui-card noui-ripple" style="height: 300px;">
-            <span id="test">Card with ripple</span>
+            <span>支持涟漪效果的卡片（点击任意位置）</span>
         </div>
-        <a href="#" class="noui-hover">A Link</a>
+        <a href="#" class="noui-hover">悬停链接</a>
     </div>
     <script>
         NoUIMenu({
@@ -39,7 +39,7 @@
             ]
         })();
         /*
-        Or
+        或者使用以下方式绑定到特定元素：
         const menu = NoUIMenu({
             items: [
                 { text: '菜单项1', action: () => alert('点击了菜单项1') },
@@ -48,7 +48,7 @@
                 { text: '菜单项4', action: () => alert('点击了菜单项4') }
             ]
         });
-        menu(document.getElementById('test'));
+        menu(document.querySelector('.noui-card'));
         */
         NoUIDialog({
             title: '提示',

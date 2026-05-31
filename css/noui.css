@@ -83,6 +83,12 @@ body:not(:has(> .noui-topbar)) {
 	margin: 0;
 }
 
+/* 悬浮固定顶栏：同时使用 fixed 和 levitation */
+.noui-topbar-fixed.noui-topbar-levitation + div {
+	padding: 70px 15px 0 15px;
+	margin: 0;
+}
+
 :root {
 	--radius: 5px;
 }
@@ -128,6 +134,21 @@ class(body>div): noui-topbar+{none/fixed}+{none/levitation}
 */
 
 .noui-topbar.noui-topbar-levitation {
+	top: 10px;
+	border-radius: var(--radius);
+	left: 50%;
+	transform: translate(-50%);
+	width: calc(100% - 15px);
+	height: 55px;
+}
+
+/*
+悬浮固定顶栏|LevitationFixedTopBar
+同时使用 fixed 和 levitation 时，保持悬浮样式但固定在顶部
+*/
+
+.noui-topbar.noui-topbar-fixed.noui-topbar-levitation {
+	position: fixed;
 	top: 10px;
 	border-radius: var(--radius);
 	left: 50%;

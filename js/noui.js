@@ -1,239 +1,260 @@
-console.log(`NoUI v1.4|New Version is new style|Newly upgraded glassmorphism style
-©2024 - 2025 NoSoft.All Rights Reserved.|版权归属于NoSoft。
-https://github.com/nosoftchina/noui
+/**
+ * NoUI - Lightweight UI Library
+ * @version 1.4
+ * @copyright 2024-2025 NoSoft. All Rights Reserved.
+ * @license MIT
+ * @see https://github.com/nosoftchina/noui
+ */
+(function (globalScope) {
+  'use strict';
 
-Ｎ　　　Ｎ　　　　　　　　　Ｕ　　　Ｕ　　ＩＩＩＩＩ
-ＮＮ　　Ｎ　　　　　　　　　Ｕ　　　Ｕ　　　　Ｉ
-ＮＮ　　Ｎ　　　ｏｏｏ　　　Ｕ　　　Ｕ　　　　Ｉ
-Ｎ　Ｎ　Ｎ　　ｏ　　　ｏ　　Ｕ　　　Ｕ　　　　Ｉ
-Ｎ　Ｎ　Ｎ　　ｏ　　　ｏ　　Ｕ　　　Ｕ　　　　Ｉ
-Ｎ　　ＮＮ　　ｏ　　　ｏ　　Ｕ　　　Ｕ　　　　Ｉ
-Ｎ　　ＮＮ　　ｏ　　　ｏ　　Ｕ　　　Ｕ　　　　Ｉ
-Ｎ　　　Ｎ　　ｏ　　　ｏ　　Ｕ　　　Ｕ　　　　Ｉ
-Ｎ　　　Ｎ　　　ｏｏｏ　　　　ＵＵＵ　　　ＩＩＩＩＩ`);
-function NoUIMenu(config) {
-  // 移除已存在的菜单（防止重复创建）
-  const existingMenu = document.getElementById("noui-menu");
-  if (existingMenu) {
-    document.body.removeChild(existingMenu);
-  }
-
-  // 创建菜单DOM结构
-  const menu = document.createElement("div");
-  menu.id = "noui-menu";
-  menu.className = "noui-card";
-  menu.style.display = "none";
-
-  const ul = document.createElement("ul");
-  ul.style.overflow = "hidden";
-
-  // 添加菜单项
-  config.items.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = item.text;
-
-    li.addEventListener("click", () => {
-      if (typeof item.action === "function") {
-        item.action();
-      } else {
-        console.warn(
-          `NoUI Menu:有菜单项 ${item.text} 被点击，但没有绑定任何操作`
-        );
-      }
-      hideMenu();
-    });
-
-    ul.appendChild(li);
-  });
-
-  menu.appendChild(ul);
-  document.body.appendChild(menu);
-
-  // 隐藏菜单函数
-  function hideMenu() {
-    menu.style.display = "none";
-  }
-
-  // 显示菜单函数
-  function showMenu(x, y) {
-    // 先显示菜单以获取真实尺寸
-    menu.style.display = "block";
-    
-    // 防止溢出：考虑窗口边界和滚动位置
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const menuWidth = menu.offsetWidth;
-    const menuHeight = menu.offsetHeight;
-    
-    // 计算可用空间，确保菜单不会超出视口
-    let adjustedX = x;
-    let adjustedY = y;
-    
-    // 水平方向调整
-    if (x + menuWidth > windowWidth - 10) {
-      adjustedX = Math.max(10, windowWidth - menuWidth - 10);
-    }
-    
-    // 垂直方向调整
-    if (y + menuHeight > windowHeight - 10) {
-      adjustedY = Math.max(10, windowHeight - menuHeight - 10);
+  /**
+   * Creates a custom context menu
+   * @param {Object} config - Menu configuration
+   * @param {Array} config.items - Array of menu items with text and action properties
+   * @returns {Function} Function to bind the menu to an element
+   */
+  function NoUIMenu(config) {
+    // Remove existing menu to prevent duplicates
+    var existingMenu = document.getElementById('noui-menu');
+    if (existingMenu) {
+      document.body.removeChild(existingMenu);
     }
 
-    menu.style.left = `${adjustedX}px`;
-    menu.style.top = `${adjustedY}px`;
-  }
+    // Create menu DOM structure
+    var menu = document.createElement('div');
+    menu.id = 'noui-menu';
+    menu.className = 'noui-card';
+    menu.style.display = 'none';
 
-  // 全局点击隐藏菜单
-  document.addEventListener("click", hideMenu);
+    var ul = document.createElement('ul');
+    ul.style.overflow = 'hidden';
 
-  // 返回一个函数用于绑定到特定元素
-  return function (element) {
-    if (!element) element = document;
+    // Add menu items
+    for (var i = 0; i < config.items.length; i++) {
+      (function (item) {
+        var li = document.createElement('li');
+        li.textContent = item.text;
 
-    element.addEventListener("contextmenu", function (e) {
-      e.preventDefault();
-      showMenu(e.clientX, e.clientY);
-    });
-  };
-}
+        li.addEventListener('click', function () {
+          if (typeof item.action === 'function') {
+            item.action();
+          } else {
+            console.warn('NoUI Menu: Menu item "' + item.text + '" clicked but no action bound');
+          }
+          hideMenu();
+        });
 
-function NoUIDialog(config) {
-  // 验证必填参数
-  if (!config || !config.title) {
-    console.error("NoUI Dialog:未提供title参数");
-    return;
-  }
-
-  // 处理options
-  let options = config.options;
-  if (!options || !Array.isArray(options) || options.length === 0) {
-    options = [
-      {
-        option: "明白",
-        action: () => closeDialog(),
-      },
-    ];
-    console.warn("NoUI Dialog:未提供options参数，使用默认选项“明白”");
-  }
-
-  // 创建DOM元素
-  const overlay = document.createElement("div");
-  overlay.className = "noui-dialog-overlay";
-
-  const dialog = document.createElement("div");
-  dialog.className = "noui-card noui-dialog";
-
-  const title = document.createElement("h3");
-  title.className = "noui-dialog-title";
-  title.textContent = config.title;
-
-  dialog.appendChild(title);
-
-  if (config.content) {
-    const content = document.createElement("div");
-    content.className = "noui-dialog-content";
-    content.innerHTML = config.content;
-    dialog.appendChild(content);
-  }
-
-  const optionsContainer = document.createElement("div");
-  optionsContainer.className = "noui-dialog-options";
-
-  options.forEach((opt) => {
-    const button = document.createElement("button");
-    button.className = "noui-button";
-    button.textContent = opt.option;
-    button.addEventListener("click", () => {
-      if (typeof opt.action === "function") {
-        opt.action();
-      }
-      closeDialog();
-    });
-    optionsContainer.appendChild(button);
-  });
-
-  dialog.appendChild(optionsContainer);
-  overlay.appendChild(dialog);
-  document.body.appendChild(overlay);
-
-  // 添加动画类
-  setTimeout(() => {
-    overlay.classList.add("show");
-    dialog.classList.add("show");
-  }, 10);
-
-  // 关闭弹窗函数
-  function closeDialog() {
-    overlay.classList.remove("show");
-    dialog.classList.remove("show");
-    setTimeout(() => {
-      if (document.body.contains(overlay)) {
-        document.body.removeChild(overlay);
-      }
-    }, 300);
-  }
-
-  // 点击遮罩层关闭
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-      closeDialog();
+        ul.appendChild(li);
+      })(config.items[i]);
     }
-  });
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-    const radius = document.body.getAttribute('data-radius') || '0';
-    document.documentElement.style.setProperty('--radius', `${radius}px`);
-});
+    menu.appendChild(ul);
+    document.body.appendChild(menu);
 
-// 等待DOM完全加载后执行
-document.addEventListener('DOMContentLoaded', function() {
-document.addEventListener('click', function(e) {
-    const targetElement = e.target.closest('.noui-ripple, .noui-button');
+    // Hide menu function
+    function hideMenu() {
+      menu.style.display = 'none';
+    }
+
+    // Show menu function with boundary checking
+    function showMenu(x, y) {
+      menu.style.display = 'block';
+
+      var windowWidth = window.innerWidth;
+      var windowHeight = window.innerHeight;
+      var menuWidth = menu.offsetWidth;
+      var menuHeight = menu.offsetHeight;
+
+      var adjustedX = x;
+      var adjustedY = y;
+
+      // Horizontal adjustment
+      if (x + menuWidth > windowWidth - 10) {
+        adjustedX = Math.max(10, windowWidth - menuWidth - 10);
+      }
+
+      // Vertical adjustment
+      if (y + menuHeight > windowHeight - 10) {
+        adjustedY = Math.max(10, windowHeight - menuHeight - 10);
+      }
+
+      menu.style.left = adjustedX + 'px';
+      menu.style.top = adjustedY + 'px';
+    }
+
+    // Global click to hide menu
+    document.addEventListener('click', hideMenu);
+
+    // Return function to bind to specific element
+    return function (element) {
+      if (!element) element = document;
+
+      element.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        showMenu(e.clientX, e.clientY);
+      });
+    };
+  }
+
+  /**
+   * Creates a dialog box
+   * @param {Object} config - Dialog configuration
+   * @param {string} config.title - Dialog title (required)
+   * @param {string} [config.content] - Dialog content (optional)
+   * @param {Array} [config.options] - Array of options with option text and action
+   */
+  function NoUIDialog(config) {
+    // Validate required parameters
+    if (!config || !config.title) {
+      console.error('NoUI Dialog: title parameter not provided');
+      return;
+    }
+
+    // Handle options with default fallback
+    var options = config.options;
+    if (!options || !Array.isArray(options) || options.length === 0) {
+      options = [{
+        option: '明白',
+        action: function () { closeDialog(); }
+      }];
+      console.warn('NoUI Dialog: options parameter not provided, using default "明白"');
+    }
+
+    // Create DOM elements
+    var overlay = document.createElement('div');
+    overlay.className = 'noui-dialog-overlay';
+
+    var dialog = document.createElement('div');
+    dialog.className = 'noui-card noui-dialog';
+
+    var title = document.createElement('h3');
+    title.className = 'noui-dialog-title';
+    title.textContent = config.title;
+
+    dialog.appendChild(title);
+
+    if (config.content) {
+      var content = document.createElement('div');
+      content.className = 'noui-dialog-content';
+      content.innerHTML = config.content;
+      dialog.appendChild(content);
+    }
+
+    var optionsContainer = document.createElement('div');
+    optionsContainer.className = 'noui-dialog-options';
+
+    for (var i = 0; i < options.length; i++) {
+      (function (opt) {
+        var button = document.createElement('button');
+        button.className = 'noui-button';
+        button.textContent = opt.option;
+        button.addEventListener('click', function () {
+          if (typeof opt.action === 'function') {
+            opt.action();
+          }
+          closeDialog();
+        });
+        optionsContainer.appendChild(button);
+      })(options[i]);
+    }
+
+    dialog.appendChild(optionsContainer);
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+
+    // Add animation class
+    setTimeout(function () {
+      overlay.classList.add('show');
+      dialog.classList.add('show');
+    }, 10);
+
+    // Close dialog function
+    function closeDialog() {
+      overlay.classList.remove('show');
+      dialog.classList.remove('show');
+      setTimeout(function () {
+        if (document.body.contains(overlay)) {
+          document.body.removeChild(overlay);
+        }
+      }, 300);
+    }
+
+    // Click overlay to close
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) {
+        closeDialog();
+      }
+    });
+  }
+
+  // Initialize radius from data attribute when DOM is ready
+  function initRadius() {
+    var radius = document.body.getAttribute('data-radius') || '0';
+    document.documentElement.style.setProperty('--radius', radius + 'px');
+  }
+
+  // Ripple effect handler
+  function handleRipple(e) {
+    var targetElement = e.target.closest('.noui-ripple, .noui-button');
 
     if (targetElement) {
-      // 创建涟漪元素
-      const ripple = document.createElement('span');
+      var ripple = document.createElement('span');
       ripple.classList.add('noui-ripple-effect');
-      
-      // 获取元素实际尺寸（包括padding和border）
-      const rect = targetElement.getBoundingClientRect();
-      const computedStyle = window.getComputedStyle(targetElement);
-      
-      // 计算包含边框和内边距的总尺寸
-      const width = rect.width;
-      const height = rect.height;
-      
-      // 计算涟漪直径（取元素对角线长度确保全覆盖）
-      const diameter = Math.sqrt(width * width + height * height);
-      const radius = diameter / 2;
-      
-      // 计算涟漪中心位置（考虑滚动偏移）
-      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // 设置涟漪样式
-      ripple.style.width = ripple.style.height = `${diameter}px`;
-      ripple.style.left = `${e.clientX - rect.left - radius + scrollLeft}px`;
-      ripple.style.top = `${e.clientY - rect.top - radius + scrollTop}px`;
-      
-      // 确保容器有正确样式（不改变原始display属性）
+
+      var rect = targetElement.getBoundingClientRect();
+      var computedStyle = window.getComputedStyle(targetElement);
+
+      var width = rect.width;
+      var height = rect.height;
+
+      // Calculate ripple diameter (diagonal for full coverage)
+      var diameter = Math.sqrt(width * width + height * height);
+      var radius = diameter / 2;
+
+      // Calculate ripple center position
+      var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      ripple.style.width = ripple.style.height = diameter + 'px';
+      ripple.style.left = (e.clientX - rect.left - radius + scrollLeft) + 'px';
+      ripple.style.top = (e.clientY - rect.top - radius + scrollTop) + 'px';
+
+      // Ensure container has correct styles
       if (computedStyle.position === 'static') {
         targetElement.style.position = 'relative';
       }
       if (computedStyle.overflow !== 'hidden') {
         targetElement.style.overflow = 'hidden';
       }
-      
-      // 添加涟漪元素
+
       targetElement.appendChild(ripple);
-      
-      // 动画结束后移除
-      setTimeout(() => {
+
+      // Remove after animation
+      setTimeout(function () {
         if (ripple.parentNode === targetElement) {
           ripple.remove();
         }
       }, 600);
     }
-  });
-});
+  }
+
+  // DOM Ready initialization
+  function onDOMContentLoaded() {
+    initRadius();
+
+    document.addEventListener('click', handleRipple);
+  }
+
+  // Register DOMContentLoaded listener
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onDOMContentLoaded);
+  } else {
+    onDOMContentLoaded();
+  }
+
+  // Expose to global scope
+  globalScope.NoUIMenu = NoUIMenu;
+  globalScope.NoUIDialog = NoUIDialog;
+
+})(typeof window !== 'undefined' ? window : this);

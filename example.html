@@ -4,56 +4,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoUI Example</title>
+    <title>NoUI Example - 完整功能演示</title>
     <link rel="stylesheet" href="css/noui.css">
     <script src="js/noui.js"></script>
+    <style>
+        .demo-section {
+            margin: 20px;
+            padding: 20px;
+        }
+        .demo-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid;
+            padding-bottom: 10px;
+        }
+        .demo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .theme-switcher {
+            margin: 10px 5px;
+        }
+    </style>
 </head>
 
-<body class="noui-theme-lightblue" data-radius="5" style="background-image: url('https://www4.bing.com//th?id=OHR.TokyoSunrise_ZH-CN0091906710_UHD.jpg')">
+<body class="noui-theme-lightblue" data-radius="8" style="background-image: url('https://www4.bing.com//th?id=OHR.TokyoSunrise_ZH-CN0091906710_UHD.jpg'); min-height: 200vh;">
     <!-- 悬浮固定顶栏示例：同时使用 fixed 和 levitation 实现悬浮效果的固定顶栏 -->
     <div class="noui-topbar noui-topbar-fixed noui-topbar-levitation noui-background-glassmorphism">
-        <span class="noui-topbar-title">NoUI Example - 悬浮固定顶栏</span>
+        <span class="noui-topbar-title">NoUI Example - 完整功能演示</span>
     </div>
-    <div>
-        <p>NoUI 框架示例页面</p>
-        <button class="noui-button">按钮示例</button>
-        <div class="noui-card">
-            <strong>卡片组件</strong><br>
-            这是一个基础卡片，欢迎使用 NoUI 框架。
+
+    <div class="demo-section">
+        <h2 class="demo-title">主题切换</h2>
+        <div class="demo-grid">
+            <button class="noui-button theme-switcher" onclick="document.body.className='noui-theme-lightblue'">浅蓝主题</button>
+            <button class="noui-button theme-switcher" onclick="document.body.className='noui-theme-dark'">深色主题</button>
+            <button class="noui-button theme-switcher" onclick="document.body.className='noui-theme-light'">浅色主题</button>
+            <button class="noui-button theme-switcher" onclick="document.body.className='noui-theme-blue'">蓝色主题</button>
+            <button class="noui-button theme-switcher" onclick="document.body.className='noui-theme-green'">绿色主题</button>
+            <button class="noui-button theme-switcher" onclick="document.body.className='noui-theme-red'">红色主题</button>
+            <button class="noui-button theme-switcher" onclick="document.body.className='noui-theme-purple'">紫色主题</button>
+            <button class="noui-button theme-switcher" onclick="document.body.className='noui-theme-orange'">橙色主题</button>
         </div>
-        <div class="noui-card noui-background-color">
-            <span>带背景色的卡片</span>
-        </div>
-        <div class="noui-card noui-ripple" style="height: 300px;">
-            <span>支持涟漪效果的卡片（点击任意位置）</span>
-        </div>
-        <a href="#" class="noui-hover">悬停链接</a>
     </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">按钮组件</h2>
+        <div class="demo-grid">
+            <button class="noui-button">普通按钮</button>
+            <button class="noui-button noui-ripple">涟漪按钮</button>
+            <button class="noui-button noui-background-color">背景色按钮</button>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">卡片组件</h2>
+        <div class="demo-grid">
+            <div class="noui-card" style="flex: 1; min-width: 250px;">
+                <strong>基础卡片</strong><br>
+                这是一个基础卡片组件，支持各种内容类型。
+            </div>
+            <div class="noui-card noui-background-color" style="flex: 1; min-width: 250px;">
+                <strong>带背景色的卡片</strong><br>
+                使用 noui-background-color 类添加背景色。
+            </div>
+            <div class="noui-card noui-ripple noui-background-glassmorphism" style="flex: 1; min-width: 250px; height: 150px;">
+                <strong>涟漪效果卡片</strong><br>
+                点击任意位置查看涟漪效果。
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">链接与悬停效果</h2>
+        <div class="demo-grid">
+            <a href="#" class="noui-hover">悬停链接 1</a>
+            <a href="#" class="noui-hover">悬停链接 2</a>
+            <a href="#" class="noui-hover">悬停链接 3</a>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">对话框测试</h2>
+        <div class="demo-grid">
+            <button class="noui-button noui-ripple" onclick="showBasicDialog()">基础对话框</button>
+            <button class="noui-button noui-ripple" onclick="showContentDialog()">带内容对话框</button>
+            <button class="noui-button noui-ripple" onclick="showOptionsDialog()">多选项对话框</button>
+            <button class="noui-button noui-ripple" onclick="showCustomDialog()">自定义回调对话框</button>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">右键菜单测试</h2>
+        <p>在页面的任何位置右键点击，或在下方特定区域右键点击以测试不同的菜单配置。</p>
+        <div class="noui-card noui-ripple" id="special-menu-area" style="height: 200px; cursor: context-menu;">
+            <strong>特殊菜单区域</strong><br>
+            在此区域内右键点击将显示自定义菜单。<br>
+            在区域外右键点击显示全局菜单。
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">玻璃拟态效果</h2>
+        <div class="demo-grid">
+            <div class="noui-card noui-background-glassmorphism" style="flex: 1; min-width: 250px; padding: 20px;">
+                <strong>玻璃拟态卡片</strong><br>
+                使用 noui-background-glassmorphism 类创建毛玻璃效果。
+            </div>
+        </div>
+    </div>
+
     <script>
+        // 全局右键菜单
         NoUIMenu({
             items: [
-                { text: '返回', action: () => window.history.back() },
-                { text: '刷新', action: () => location.reload() },
-                { text: '打印', action: () => window.print() },
-                { text: '复制', action: () => navigator.clipboard.writeText(window.getSelection().toString()) }
+                { text: '返回', action: function() { window.history.back(); } },
+                { text: '刷新', action: function() { location.reload(); } },
+                { text: '打印', action: function() { window.print(); } },
+                { text: '复制选中文字', action: function() { 
+                    var selectedText = window.getSelection().toString();
+                    if (selectedText) {
+                        navigator.clipboard.writeText(selectedText);
+                    } else {
+                        alert('请先选中一些文字');
+                    }
+                }},
+                { text: '关于 NoUI', action: function() { 
+                    showAboutDialog(); 
+                }}
             ]
         })();
-        /*
-        或者使用以下方式绑定到特定元素：
-        const menu = NoUIMenu({
+
+        // 为特定区域绑定自定义右键菜单
+        var specialMenu = NoUIMenu({
             items: [
-                { text: '菜单项1', action: () => alert('点击了菜单项1') },
-                { text: '菜单项2', action: () => alert('点击了菜单项2') },
-                { text: '菜单项3' },
-                { text: '菜单项4', action: () => alert('点击了菜单项4') }
+                { text: '特殊菜单项 1', action: function() { alert('点击了特殊菜单项 1'); } },
+                { text: '特殊菜单项 2', action: function() { alert('点击了特殊菜单项 2'); } },
+                { text: '特殊菜单项 3' },
+                { text: '打开对话框', action: function() { showBasicDialog(); } }
             ]
         });
-        menu(document.querySelector('.noui-card'));
-        */
-        NoUIDialog({
-            title: '提示',
-            content: '这是一个对话框',
-        });
+        specialMenu(document.getElementById('special-menu-area'));
+
+        // 对话框函数
+        function showBasicDialog() {
+            NoUIDialog({
+                title: '基础对话框',
+                content: '这是一个最简单的对话框示例。'
+            });
+        }
+
+        function showContentDialog() {
+            NoUIDialog({
+                title: '带内容的对话框',
+                content: '<p>这个对话框包含丰富的 HTML 内容：</p>' +
+                        '<ul>' +
+                        '<li>支持 HTML 标签</li>' +
+                        '<li>可以显示列表</li>' +
+                        '<li>可以设置样式</li>' +
+                        '</ul>' +
+                        '<p style="color: #666;">这是一个非常有用的功能！</p>'
+            });
+        }
+
+        function showOptionsDialog() {
+            NoUIDialog({
+                title: '多选项对话框',
+                content: '请选择一个操作：',
+                options: [
+                    { 
+                        option: '确认', 
+                        action: function() { alert('您选择了确认'); } 
+                    },
+                    { 
+                        option: '取消', 
+                        action: function() { console.log('用户取消了操作'); } 
+                    },
+                    { 
+                        option: '帮助', 
+                        action: function() { 
+                            NoUIDialog({
+                                title: '帮助信息',
+                                content: '这里是详细的帮助说明...'
+                            });
+                        } 
+                    }
+                ]
+            });
+        }
+
+        function showCustomDialog() {
+            NoUIDialog({
+                title: '自定义回调',
+                content: '这个对话框有自定义的回调函数。',
+                options: [
+                    { 
+                        option: '确定', 
+                        action: function() { 
+                            console.log('执行自定义逻辑...');
+                            setTimeout(function() {
+                                alert('自定义逻辑执行完毕！');
+                            }, 300);
+                        } 
+                    }
+                ]
+            });
+        }
+
+        function showAboutDialog() {
+            NoUIDialog({
+                title: '关于 NoUI',
+                content: '<p><strong>NoUI</strong> 是一个轻量级的 UI 框架。</p>' +
+                        '<p>版本：1.4</p>' +
+                        '<p>特点：</p>' +
+                        '<ul>' +
+                        '<li>无需构建工具</li>' +
+                        '<li>零依赖</li>' +
+                        '<li>简单易用</li>' +
+                        '<li>性能优秀</li>' +
+                        '</ul>',
+                options: [
+                    { 
+                        option: '关闭', 
+                        action: function() { console.log('关闭关于对话框'); } 
+                    }
+                ]
+            });
+        }
+
+        // 自动显示欢迎对话框
+        setTimeout(function() {
+            NoUIDialog({
+                title: '欢迎使用 NoUI',
+                content: '<p>这是一个功能完整的示例页面，展示了 NoUI 框架的所有特性：</p>' +
+                        '<ul>' +
+                        '<li>多种主题切换</li>' +
+                        '<li>按钮和卡片组件</li>' +
+                        '<li>涟漪动画效果</li>' +
+                        '<li>右键上下文菜单</li>' +
+                        '<li>灵活的对话框系统</li>' +
+                        '<li>玻璃拟态效果</li>' +
+                        '</ul>' +
+                        '<p>试试右键点击页面或上方按钮来体验更多功能！</p>',
+                options: [
+                    { 
+                        option: '开始探索', 
+                        action: function() { console.log('用户开始探索 NoUI'); } 
+                    }
+                ]
+            });
+        }, 500);
     </script>
 </body>
 
